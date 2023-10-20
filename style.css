@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('/font/JosefinSans-VariableFont_wght.ttf');
+}
+
+:root {
+  --tile-size: calc(100vw / 15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'JosefinSans';
+  user-select: none;
+}
+
+.asset {
+  display: none;
+}
+
+canvas {
+  background-color: #21232b;
+}
+
+.startScreen {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--tile-size) * 15);
+  height: calc(var(--tile-size) * 8);
+  background-color: #21232b;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.startButton {
+  position: absolute;
+  width: calc(var(--tile-size) * 2);
+  height: var(--tile-size);
+  font-size: calc(var(--tile-size) / 64 * 24);
+  color: white;
+  background-color: #797979;
+}
+
+.btn {
+  border-radius: calc(var(--tile-size) / 64 * 8);
+  box-shadow: 0 calc(var(--tile-size) / 64 * 8) #535353;
+}
+
+.btn:active {
+  box-shadow: 0 0 #535353;
+  transform: translateY(calc(var(--tile-size) / 64 * 8));
+}
+
+.disable {
+  display: none;
+}
+
+.canvas-container {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.debug {
+  color: white;
+  position: fixed;
+  top: 24px;
+  left: 24px;
+}
+
+.menuButton {
+  border: none;
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('./public/assets/images/menuButton.png');
+  position: fixed;
+}
+
+.menuScreen {
+  background-color: #111113be;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.resumeButton,
+.restartButton {
+  width: calc(var(--tile-size) * 2);
+  height: var(--tile-size);
+  margin-top: calc(var(--tile-size) / 2);
+  font-size: calc(var(--tile-size) / 64 * 21);
+  color: white;
+  background-color: #797979;
+}
+
+.battleButton {
+  position: absolute;
+  margin: auto;
+  background-color: #797979;
+  color: white;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  font-size: calc(var(--tile-size) / 4);
+}

@@ -1,0 +1,17 @@
+{
+  "name": "TreeStory",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "android": {
+    "release": {
+      "signingConfig": {
+        "storeFile": "DonkeysIsle2023.keystore",
+        "storePassword": "DonkeysIsle2023",
+        "keyAlias": "donkeysIsle2023",
+        "keyPassword": "DonkeysIsle2023"
+      }
+    }
+  }
+}
