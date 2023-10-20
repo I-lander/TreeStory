@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Planet } from './objects/Planet';
+import { Story } from './objects/Stories';
 import { Ship } from './objects/Ship';
 import { Tree } from './objects/Tree';
 
@@ -39,12 +39,13 @@ class Init {
       width: canvas.width,
       height: canvas.height,
     };
+    this.backgroundSize = innerHeight * 6;
     this.limit = {
       id: 'limit',
-      x: -6144 / 4 + innerWidth / 2,
-      y: -6144 / 2 + innerHeight,
-      width: 6144 / 2,
-      height: 6144 / 2,
+      x: -this.backgroundSize / 4 + innerWidth / 2,
+      y: -this.backgroundSize / 2 + innerHeight,
+      width: this.backgroundSize / 2,
+      height: this.backgroundSize / 2,
     };
     this.setDebugInfo = setDebugInfo;
 
@@ -58,14 +59,14 @@ class Init {
       console.log(`X: ${percentX}%, Y: ${percentY}%`);
     });
 
-    window.addEventListener('mousedown', (e) => {
-      // if (e.target &&
-      //   e.target.tagName.toLowerCase() === 'a' ||
-      //   e.target.tagName.toLowerCase() === 'img' ||
-      //   e.target.tagName.toLowerCase() === 'button'
-      // ) {
-      //   return;
-      // }
+    window.addEventListener('mousedown', (e: any) => {
+      if (
+        e.target.tagName.toLowerCase() === 'a' ||
+        e.target.tagName.toLowerCase() === 'img' ||
+        e.target.tagName.toLowerCase() === 'button'
+      ) {
+        return;
+      }
       this.mouseDown = true;
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
@@ -82,14 +83,14 @@ class Init {
       }
     });
 
-    window.addEventListener('touchstart', (e) => {
-      // if (
-      //   e.target.tagName.toLowerCase() === 'a' ||
-      //   e.target.tagName.toLowerCase() === 'img' ||
-      //   e.target.tagName.toLowerCase() === 'button'
-      // ) {
-      //   return;
-      // }
+    window.addEventListener('touchstart', (e: any) => {
+      if (
+        e.target.tagName.toLowerCase() === 'a' ||
+        e.target.tagName.toLowerCase() === 'img' ||
+        e.target.tagName.toLowerCase() === 'button'
+      ) {
+        return;
+      }
       this.mouseDown = true;
       this.mouseX = e.touches[0].clientX;
       this.mouseY = e.touches[0].clientY;
@@ -120,12 +121,12 @@ class Init {
   init() {
     const ship = new Ship(innerWidth / 2, innerHeight / 2, this);
     const tree = new Tree(
-      -6144 / 4 + innerWidth / 2,
-      -6144 / 2 + innerHeight,
+      -this.backgroundSize / 4 + innerWidth / 2,
+      -this.backgroundSize / 2 + innerHeight,
       this,
     );
 
-    const delementPlanet = new Planet(0.25, 0.5, this);
+    const delementPlanet = new Story(0.25, 0.5, this);
 
     this.worldObjects = [tree, ship, delementPlanet];
   }

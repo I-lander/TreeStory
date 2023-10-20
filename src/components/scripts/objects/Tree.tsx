@@ -6,6 +6,8 @@ export class Tree {
   img: HTMLImageElement;
   tag: string;
   init: any;
+  width: any;
+  height: any;
   constructor(x: number, y: number, init: Init) {
     this.x = x;
     this.y = y;
@@ -18,10 +20,20 @@ export class Tree {
     const screenX = this.x - this.init.camera.x;
     const screenY = this.y - this.init.camera.y;
 
-    this.init.ctx.drawImage(this.img, screenX, screenY, 6144 / 2, 6144 / 2);
+    this.init.ctx.drawImage(
+      this.img,
+      screenX,
+      screenY,
+      this.height,
+      this.height,
+    );
   }
 
   update() {
+    this.x = this.init.limit.x;
+    this.y = this.init.limit.y;
+    this.width = this.init.limit.width;
+    this.height = this.init.limit.height;
     this.draw();
   }
 }

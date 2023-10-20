@@ -38,6 +38,7 @@ class GameLoop {
       return;
     }
 
+    this.delta = timestamp - this.lastFrameTimeMs;
     this.lastFrameTimeMs = timestamp;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -45,7 +46,8 @@ class GameLoop {
     this.Init.drawWorld();
 
     if (this.Init.mouseDown) {
-      var speed = 8;
+      var speed = 5;
+
       var dx = this.Init.mouseX - innerWidth / 2;
       var dy = this.Init.mouseY - innerHeight / 2;
       var distance = Math.sqrt(dx * dx + dy * dy);
@@ -81,7 +83,6 @@ class GameLoop {
     this.ctx.stroke();
     this.ctx.restore();
 
-    
     /////////////////////////////////////////////
 
     requestAnimationFrame(this.animate);

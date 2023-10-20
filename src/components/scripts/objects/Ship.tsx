@@ -17,12 +17,13 @@ export class Ship {
     this.y = y;
     this.oldY = y;
     this.sprite = document.getElementById('shipSprite') as HTMLImageElement;
-    this.spriteSize = 100;
+    this.init = init;
+    this.spriteSize = this.init.backgroundSize / 30;
     this.particles = [];
     this.angle;
     this.tag = 'ship';
-    this.init = init;
   }
+
   emitParticles() {
     const numParticles = 50;
     if (this.particles.length >= numParticles || !this.init.mouseDown) {
@@ -65,14 +66,23 @@ export class Ship {
     ctx.restore();
   }
   update() {
-    this.draw(this.init.ctx);
+    // for (var i = 0; i < this.init.worldObjects.length; i++) {
+    //   var obj = this.init.worldObjects[i];
+    //   if (obj.tag && obj.tag === 'sun') {
+    //     this.drawCompass(this.init.ctx, obj);
+    //   }
+    // }
 
-    for (var i = 0; i < this.init.worldObjects.length; i++) {
-      var obj = this.init.worldObjects[i];
-      if (obj.tag && obj.tag === 'sun') {
-        this.drawCompass(this.init.ctx, obj);
+    for (let i = 0; i < this.particles.length; i++) {
+      const particle = this.particles[i];
+      if (particle.radius <= 0) {
+        this.particles.splice(i, 1);
+        i--;
+        continue;
       }
+      particle.update();
     }
+    this.draw(this.init.ctx);
   }
 
   drawCompass(ctx: CanvasRenderingContext2D, sun: any) {

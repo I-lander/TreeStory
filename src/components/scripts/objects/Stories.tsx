@@ -1,6 +1,6 @@
 import Init from '../Init.js';
 
-export class Planet {
+export class Story {
   xAbsolute: any;
   yAbsolute: any;
   init: any;
@@ -22,22 +22,21 @@ export class Planet {
     this.init = init;
     this.x = 0;
     this.y = 0;
-    this.radius = 100;
-    this.initRadius = 100;
-    this.maxDist = 300;
+    this.radius = this.init.backgroundSize / 30;
+    this.initRadius = this.init.backgroundSize / 30;
+    this.maxDist = this.radius * 2;
     this.color = Math.random() * 360;
-    this.image = document.getElementById("delement-img");
-    this.id = "delement";
+    this.image = document.getElementById('delement-img');
+    this.id = 'delement';
     this.text =
       "<h3 style='text-align:center'>Délements</h3>" +
-      "<p>Délements est un jeu développé sur Unity." +
+      '<p>Délements est un jeu développé sur Unity.' +
       "C'est à ce jour ma dernière création, il témoigne donc de toute mon expérience acquise.<br>" +
       "Mon but en me lançant dans ce projet était d'apprendre le C#.<br>" +
       "Disponible gratuitement sur : <br> <a class='link' href='https://play.google.com/store/apps/details?id=com.donkeysisle.diceychess' target='_blank'><img class='repo-link' src='./Sources/Images/playStore.png'></a>" +
       "Le lien du repo Github :<br> <a class='link' href='https://github.com/I-lander/Delements/' target='_blank'><img class='repo-link' src='./Sources/Images/GitHub-white.png'></a>" +
-      "</p>";
+      '</p>';
   }
-  
 
   draw(ctx: CanvasRenderingContext2D) {
     const screenX = this.x - this.init.camera.x;
@@ -71,7 +70,8 @@ export class Planet {
               console.log('Touched!');
 
               let targetElement = e.target as any;
-              if ( targetElement &&
+              if (
+                targetElement &&
                 targetElement.tagName.toLowerCase() === 'img' &&
                 targetElement.parentElement.tagName.toLowerCase() === 'a'
               ) {
@@ -101,8 +101,7 @@ export class Planet {
     this.x = this.init.limit.x + this.xAbsolute * this.init.limit.width;
     this.y = this.init.limit.y + this.yAbsolute * this.init.limit.height;
 
-    if(this.x && this.y)
-    this.draw(this.init.ctx);
+    if (this.x && this.y) this.draw(this.init.ctx);
 
     this.detectCollision();
   }
