@@ -113,3 +113,12 @@ canvas {
   height: var(--tile-size);
   font-size: calc(var(--tile-size) / 4);
 }
+.storyText {
+  color: white;
+  font-size: 6vh;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}

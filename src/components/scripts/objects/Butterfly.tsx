@@ -1,6 +1,6 @@
 import Init from '../Init';
 
-export class Ship {
+export class Butterfly {
   x: any;
   oldX: any;
   y: any;
@@ -16,7 +16,7 @@ export class Ship {
     this.oldX = x;
     this.y = y;
     this.oldY = y;
-    this.sprite = document.getElementById('shipSprite') as HTMLImageElement;
+    this.sprite = document.getElementById('butterfly') as HTMLImageElement;
     this.init = init;
     this.spriteSize = this.init.backgroundSize / 30;
     this.particles = [];

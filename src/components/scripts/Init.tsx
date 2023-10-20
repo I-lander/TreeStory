@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Story } from './objects/Stories';
-import { Ship } from './objects/Ship';
+import { Butterfly } from './objects/Butterfly';
 import { Tree } from './objects/Tree';
 
 class Init {
@@ -119,7 +119,7 @@ class Init {
   }
 
   init() {
-    const ship = new Ship(innerWidth / 2, innerHeight / 2, this);
+    const ship = new Butterfly(innerWidth / 2, innerHeight / 2, this);
     const tree = new Tree(
       -this.backgroundSize / 4 + innerWidth / 2,
       -this.backgroundSize / 2 + innerHeight,

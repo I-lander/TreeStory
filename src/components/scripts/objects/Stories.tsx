@@ -26,15 +26,12 @@ export class Story {
     this.initRadius = this.init.backgroundSize / 30;
     this.maxDist = this.radius * 2;
     this.color = Math.random() * 360;
-    this.image = document.getElementById('delement-img');
-    this.id = 'delement';
+    this.image = document.getElementById('bird-img');
+    this.id = 'bird';
     this.text =
-      "<h3 style='text-align:center'>Délements</h3>" +
-      '<p>Délements est un jeu développé sur Unity.' +
-      "C'est à ce jour ma dernière création, il témoigne donc de toute mon expérience acquise.<br>" +
-      "Mon but en me lançant dans ce projet était d'apprendre le C#.<br>" +
-      "Disponible gratuitement sur : <br> <a class='link' href='https://play.google.com/store/apps/details?id=com.donkeysisle.diceychess' target='_blank'><img class='repo-link' src='./Sources/Images/playStore.png'></a>" +
-      "Le lien du repo Github :<br> <a class='link' href='https://github.com/I-lander/Delements/' target='_blank'><img class='repo-link' src='./Sources/Images/GitHub-white.png'></a>" +
+      "<p>L'oiseau:</br>" +
+      'Voici une petite histoire bien sympa,' +
+      "Merci de m'avoir écouté :)" +
       '</p>';
   }
 
@@ -56,7 +53,7 @@ export class Story {
       if (!planetText) {
         planetText = document.createElement('div');
         planetText.id = this.id;
-        planetText.classList.add('planetText');
+        planetText.classList.add('storyText');
         if (planetText.innerHTML == '') {
           planetText.innerHTML = this.text;
         }

@@ -46,14 +46,17 @@ class GameLoop {
     this.Init.drawWorld();
 
     if (this.Init.mouseDown) {
-      var speed = 5;
+      var speed = 5; // This is in units per second.
+      var distanceToMoveThisFrame = speed * (this.delta / 10) / window.devicePixelRatio || 1;; // Movement this frame.
 
       var dx = this.Init.mouseX - innerWidth / 2;
       var dy = this.Init.mouseY - innerHeight / 2;
       var distance = Math.sqrt(dx * dx + dy * dy);
 
-      const futurPosX = this.Init.camera.x + (dx / distance) * speed;
-      const futurPosY = this.Init.camera.y + (dy / distance) * speed;
+      const futurPosX =
+        this.Init.camera.x + (dx / distance) * distanceToMoveThisFrame;
+      const futurPosY =
+        this.Init.camera.y + (dy / distance) * distanceToMoveThisFrame;
 
       if (
         futurPosX + this.Init.camera.width / 2 >= this.Init.limit.x &&
