@@ -126,7 +126,7 @@ class Init {
       this,
     );
 
-    const delementPlanet = new Story(0.25, 0.5, this);
+    const delementPlanet = new Story(0.25, 0.45, this);
 
     this.worldObjects = [tree, ship, delementPlanet];
   }

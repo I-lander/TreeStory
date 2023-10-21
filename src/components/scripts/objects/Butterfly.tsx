@@ -1,4 +1,5 @@
 import Init from '../Init';
+import { getRandom } from '../Utils';
 
 export class Butterfly {
   x: any;
@@ -18,14 +19,14 @@ export class Butterfly {
     this.oldY = y;
     this.sprite = document.getElementById('butterfly') as HTMLImageElement;
     this.init = init;
-    this.spriteSize = this.init.backgroundSize / 30;
+    this.spriteSize = this.init.backgroundSize / 20;
     this.particles = [];
     this.angle;
     this.tag = 'ship';
   }
 
   emitParticles() {
-    const numParticles = 50;
+    const numParticles = 100;
     if (this.particles.length >= numParticles || !this.init.mouseDown) {
       return;
     }
@@ -113,17 +114,19 @@ export class Particles {
   radius: number;
   velocity: { x: number; y: number };
   init: Init;
+  color: string;
   constructor(x: number, y: number, init: Init) {
     this.x = x;
     this.y = y;
-    this.radius = Math.random() * 8;
-    this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 };
     this.init = init;
+    this.radius = Math.random() * this.init.backgroundSize / 500;
+    this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 };
+    this.color = `hsl(${getRandom(0, 360)}, 85%, 75%)`;
   }
 
   draw() {
     this.init.ctx.save();
-    this.init.ctx.fillStyle = 'white';
+    this.init.ctx.fillStyle = this.color;
     this.init.ctx.beginPath();
     this.init.ctx.arc(
       this.x - this.init.camera.x,

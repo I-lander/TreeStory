@@ -74,7 +74,7 @@ function MainApp() {
       {!isGameStarted && (
         <div className="startScreen">
           <button className="startButton btn" onClick={startGame}>
-            Start
+          <span className="triangle-right"></span>
           </button>
         </div>
       )}

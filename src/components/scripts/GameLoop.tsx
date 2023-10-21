@@ -82,7 +82,7 @@ class GameLoop {
     );
     this.ctx.setLineDash([10, 10]);
     this.ctx.lineWidth = 5;
-    this.ctx.strokeStyle = 'hsla(0, 64%, 60%, 1)';
+    this.ctx.strokeStyle = 'hsla(202, 100%, 71%, 1)';
     this.ctx.stroke();
     this.ctx.restore();
 

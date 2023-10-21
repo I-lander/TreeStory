@@ -15,6 +15,8 @@ export class Story {
   speed: any;
   oldSpeed: any;
   id: string;
+  audioPlayed: boolean;
+  audio: HTMLAudioElement;
 
   constructor(xAbsolute: number, yAbsolute: number, init: Init) {
     this.xAbsolute = xAbsolute;
@@ -33,6 +35,8 @@ export class Story {
       'Voici une petite histoire bien sympa,' +
       "Merci de m'avoir écouté :)" +
       '</p>';
+    this.audio = document.getElementById('testAudio') as HTMLAudioElement;
+    this.audioPlayed = false;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
@@ -60,36 +64,20 @@ export class Story {
         planetText.style.position = 'fixed';
         planetText.style.zIndex = '10000';
         document.body.appendChild(planetText);
-        const links = document.querySelectorAll('.link');
-        if (links) {
-          links.forEach(function (link) {
-            link.addEventListener('touchstart', function (e) {
-              console.log('Touched!');
-
-              let targetElement = e.target as any;
-              if (
-                targetElement &&
-                targetElement.tagName.toLowerCase() === 'img' &&
-                targetElement.parentElement.tagName.toLowerCase() === 'a'
-              ) {
-                targetElement = targetElement.parentElement;
-              }
-              if (targetElement.tagName.toLowerCase() === 'a') {
-                window.open(targetElement.href, '_blank');
-              }
-            });
-          });
-        }
       }
       planetText.style.width = `${textSize}px`;
       planetText.style.height = `${textSize}px`;
       planetText.style.left = `${screenX - textSize / 2}px`;
       planetText.style.top = `${screenY - textSize / 2}px`;
       ctx.save();
-      ctx.fillStyle = 'rgba(32, 32, 34, 0.95)';
+      ctx.fillStyle = 'hsl(202, 100%, 98%)';
       ctx.beginPath();
       ctx.arc(screenX, screenY, this.radius, 0, 2 * Math.PI);
       ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = 'hsla(202, 100%, 71%, 1)';
+      ctx.stroke();
+      ctx.stroke();
       ctx.restore();
     }
   }
@@ -101,6 +89,16 @@ export class Story {
     if (this.x && this.y) this.draw(this.init.ctx);
 
     this.detectCollision();
+
+    if (!this.image) {
+      if (this.audio && !this.audioPlayed) {
+        this.audio.volume = 1.0;
+        this.audio.play();
+        this.audioPlayed = true;
+      }
+    } else {
+      this.audioPlayed = false;
+    }
   }
 
   detectCollision() {
