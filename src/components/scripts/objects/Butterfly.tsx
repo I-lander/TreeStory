@@ -115,13 +115,15 @@ export class Particles {
   velocity: { x: number; y: number };
   init: Init;
   color: string;
+  hue: number;
   constructor(x: number, y: number, init: Init) {
     this.x = x;
     this.y = y;
     this.init = init;
-    this.radius = Math.random() * this.init.backgroundSize / 500;
+    this.radius = (Math.random() * this.init.backgroundSize) / 500;
     this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 };
-    this.color = `hsl(${getRandom(0, 360)}, 85%, 75%)`;
+    this.hue = getRandom(0, 360);
+    this.color = `hsl(${this.hue}, 85%, 75%)`;
   }
 
   draw() {
@@ -144,5 +146,7 @@ export class Particles {
     this.x += this.velocity.x;
     this.y += this.velocity.y;
     this.radius -= 0.1;
+    this.hue += 3;
+    this.color = `hsl(${this.hue}, 85%, 75%)`;
   }
 }

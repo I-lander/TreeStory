@@ -70,22 +70,6 @@ class GameLoop {
         this.Init.camera.y = futurPosY;
       }
     }
-    var screenX = this.Init.limit.x - this.Init.camera.x;
-    var screenY = this.Init.limit.y - this.Init.camera.y;
-    this.ctx.save();
-    this.ctx.beginPath();
-    this.ctx.rect(
-      screenX,
-      screenY,
-      this.Init.limit.width,
-      this.Init.limit.height,
-    );
-    this.ctx.setLineDash([10, 10]);
-    this.ctx.lineWidth = 5;
-    this.ctx.strokeStyle = 'hsla(202, 100%, 71%, 1)';
-    this.ctx.stroke();
-    this.ctx.restore();
-
     /////////////////////////////////////////////
 
     requestAnimationFrame(this.animate);

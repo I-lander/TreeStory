@@ -1,4 +1,4 @@
-import Init from '../Init.js';
+import Init from '../Init';
 
 export class Story {
   xAbsolute: any;
@@ -11,12 +11,13 @@ export class Story {
   maxDist: number;
   color: number;
   image: any;
-  text: string;
+  text: string | undefined;
   speed: any;
   oldSpeed: any;
-  id: string;
-  audioPlayed: boolean;
-  audio: HTMLAudioElement;
+  img: HTMLImageElement | undefined;
+  id: string | undefined;
+  audioPlayed: boolean | undefined;
+  audio: HTMLAudioElement | undefined;
 
   constructor(xAbsolute: number, yAbsolute: number, init: Init) {
     this.xAbsolute = xAbsolute;
@@ -28,22 +29,17 @@ export class Story {
     this.initRadius = this.init.backgroundSize / 30;
     this.maxDist = this.radius * 2;
     this.color = Math.random() * 360;
-    this.image = document.getElementById('bird-img');
-    this.id = 'bird';
-    this.text =
-      "<p>L'oiseau:</br>" +
-      'Voici une petite histoire bien sympa,' +
-      "Merci de m'avoir écouté :)" +
-      '</p>';
-    this.audio = document.getElementById('testAudio') as HTMLAudioElement;
-    this.audioPlayed = false;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
     const screenX = this.x - this.init.camera.x;
     const screenY = this.y - this.init.camera.y;
-
-    if (this.image) {
+    if (!this.id) {
+      console.log('sss');
+      
+      return;
+    }
+    if (this.image ) {
       ctx.drawImage(
         this.image,
         screenX - this.radius,
@@ -54,7 +50,7 @@ export class Story {
     } else {
       let planetText = document.getElementById(this.id);
       const textSize = this.maxDist + 25;
-      if (!planetText) {
+      if (!planetText && this.text) {
         planetText = document.createElement('div');
         planetText.id = this.id;
         planetText.classList.add('storyText');
@@ -65,20 +61,22 @@ export class Story {
         planetText.style.zIndex = '10000';
         document.body.appendChild(planetText);
       }
-      planetText.style.width = `${textSize}px`;
-      planetText.style.height = `${textSize}px`;
-      planetText.style.left = `${screenX - textSize / 2}px`;
-      planetText.style.top = `${screenY - textSize / 2}px`;
-      ctx.save();
-      ctx.fillStyle = 'hsl(202, 100%, 98%)';
-      ctx.beginPath();
-      ctx.arc(screenX, screenY, this.radius, 0, 2 * Math.PI);
-      ctx.fill();
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = 'hsla(202, 100%, 71%, 1)';
-      ctx.stroke();
-      ctx.stroke();
-      ctx.restore();
+      if (planetText) {
+        planetText.style.width = `${textSize}px`;
+        planetText.style.height = `${textSize}px`;
+        planetText.style.left = `${screenX - textSize / 2}px`;
+        planetText.style.top = `${screenY - textSize / 2}px`;
+        ctx.save();
+        ctx.fillStyle = 'hsl(202, 100%, 98%)';
+        ctx.beginPath();
+        ctx.arc(screenX, screenY, this.radius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = 'hsla(202, 100%, 71%, 1)';
+        ctx.stroke();
+        ctx.stroke();
+        ctx.restore();
+      }
     }
   }
 
@@ -97,7 +95,11 @@ export class Story {
         this.audioPlayed = true;
       }
     } else {
-      this.audioPlayed = false;
+      if (this.audio && this.audioPlayed) {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        this.audioPlayed = false;
+      }
     }
   }
 
