@@ -1,4 +1,5 @@
 import Init from '../Init';
+declare var Media: any;
 
 export class Story {
   xAbsolute: any;
@@ -9,7 +10,6 @@ export class Story {
   radius: number;
   initRadius: number;
   maxDist: number;
-  color: number;
   image: any;
   text: string | undefined;
   speed: any;
@@ -28,18 +28,16 @@ export class Story {
     this.radius = this.init.backgroundSize / 30;
     this.initRadius = this.init.backgroundSize / 30;
     this.maxDist = this.radius * 2;
-    this.color = Math.random() * 360;
+    this.audioPlayed = false;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
     const screenX = this.x - this.init.camera.x;
     const screenY = this.y - this.init.camera.y;
     if (!this.id) {
-      console.log('sss');
-      
       return;
     }
-    if (this.image ) {
+    if (this.image) {
       ctx.drawImage(
         this.image,
         screenX - this.radius,
@@ -81,6 +79,14 @@ export class Story {
   }
 
   update() {
+    if (!this.audio) {
+      if (window.cordova) {
+        this.audio = new Media(`./public/assets/sound/${this.id}.m4a`);
+      } else {
+        this.audio = new Audio(`./public/assets/sound/${this.id}.m4a`);
+      }
+    }
+
     this.x = this.init.limit.x + this.xAbsolute * this.init.limit.width;
     this.y = this.init.limit.y + this.yAbsolute * this.init.limit.height;
 

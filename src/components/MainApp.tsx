@@ -5,7 +5,7 @@ import { screenInit } from './scripts/Utils';
 function MainApp() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameLoopRef = useRef<GameLoop | null>(null);
-  const [isGameStarted, setIsGameStarted] = useState(false);
+    const [isGameStarted, setIsGameStarted] = useState(false);
   const [isGamePaused, setIsGamePaused] = useState(false);
   const isGamePausedRef = useRef(isGamePaused);
 
@@ -37,32 +37,6 @@ function MainApp() {
   };
   useEffect(() => {
     screenInit(canvasRef);
-  });
-
-  const pauseGame = () => {
-    setIsGamePaused(true);
-  };
-
-  const resumeGame = () => {
-    setTimeout(() => {
-      setIsGamePaused(false);
-    }, 100);
-  };
-
-  const resetGame = () => {
-    if (gameLoopRef.current) {
-      gameLoopRef.current.reset();
-    }
-    setTimeout(() => {
-      setIsGamePaused(false);
-    }, 100);
-  };
-
-  window.addEventListener('resize', function (e) {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      screenInit(canvasRef);
-    }
   });
 
   return (

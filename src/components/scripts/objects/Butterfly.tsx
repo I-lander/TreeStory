@@ -18,7 +18,7 @@ export class Butterfly {
     this.oldX = x;
     this.y = y;
     this.oldY = y;
-    this.sprite = document.getElementById('butterfly') as HTMLImageElement;
+    this.sprite = document.getElementById('butterfly-img') as HTMLImageElement;
     this.init = init;
     this.spriteSize = this.init.backgroundSize / 20;
     this.particles = [];

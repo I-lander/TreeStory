@@ -11,7 +11,7 @@ export class Tree {
   constructor(x: number, y: number, init: Init) {
     this.x = x;
     this.y = y;
-    this.img = document.getElementById('tree') as HTMLImageElement;
+    this.img = document.getElementById('tree-img') as HTMLImageElement;
     this.tag = 'tree';
     this.init = init;
   }

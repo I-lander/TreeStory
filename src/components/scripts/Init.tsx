@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Owl, TheBatAndTheWorm, TheSnakeAndTheSpider } from './Stories';
 import { Butterfly } from './objects/Butterfly';
+import { Owl, TheBatAndTheWorm, TheSnakeAndTheSpider } from './objects/Stories';
 import { Tree } from './objects/Tree';
 
 class Init {
