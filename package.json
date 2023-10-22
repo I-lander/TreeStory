@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "type": "commonjs",
   "scripts": {
-    "dev": "ionic serve"
+    "dev": "ionic serve",
+    "android": "build_android"
   },
   "dependencies": {
     "@awesome-cordova-plugins/android-full-screen": "^6.4.0",

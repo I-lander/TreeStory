@@ -1,5 +1,4 @@
 import Init from '../Init';
-declare var Media: any;
 
 export class Story {
   xAbsolute: any;
@@ -80,13 +79,8 @@ export class Story {
 
   update() {
     if (!this.audio) {
-      if (window.cordova) {
-        this.audio = new Media(`./public/assets/sound/${this.id}.m4a`);
-      } else {
-        this.audio = new Audio(`./public/assets/sound/${this.id}.m4a`);
-      }
+      this.audio = document.getElementById(`${this.id}`) as HTMLAudioElement;
     }
-
     this.x = this.init.limit.x + this.xAbsolute * this.init.limit.width;
     this.y = this.init.limit.y + this.yAbsolute * this.init.limit.height;
 
