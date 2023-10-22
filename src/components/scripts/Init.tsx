@@ -20,10 +20,8 @@ class Init {
   constructor(
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D,
-    isGamePaused: React.RefObject<boolean>,
     setDebugInfo: Dispatch<SetStateAction<string>>,
   ) {
-    this.isGamePaused = isGamePaused;
     this.worldObjects = [];
     this.map = [];
     this.mapSize = 8;

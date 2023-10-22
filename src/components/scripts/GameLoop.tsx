@@ -15,7 +15,6 @@ class GameLoop {
   constructor(
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D,
-    isGamePaused: React.RefObject<boolean>,
     setDebugInfo: Dispatch<SetStateAction<string>>,
   ) {
     this.delta = 0;
@@ -27,7 +26,7 @@ class GameLoop {
     this.ctx.imageSmoothingEnabled = true;
     this.ctx.imageSmoothingQuality = 'high';
 
-    this.Init = new Init(this.canvas, this.ctx, isGamePaused, setDebugInfo);
+    this.Init = new Init(this.canvas, this.ctx, setDebugInfo);
   }
 
   animate = () => {
@@ -47,7 +46,8 @@ class GameLoop {
 
     if (this.Init.mouseDown) {
       var speed = 5; // This is in units per second.
-      var distanceToMoveThisFrame = speed * (this.delta / 10) / window.devicePixelRatio || 1;; // Movement this frame.
+      var distanceToMoveThisFrame =
+        (speed * (this.delta / 10)) / window.devicePixelRatio || 1; // Movement this frame.
 
       var dx = this.Init.mouseX - innerWidth / 2;
       var dy = this.Init.mouseY - innerHeight / 2;
