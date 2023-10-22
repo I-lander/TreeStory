@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
+import { Owl, TheBatAndTheWorm, TheSnakeAndTheSpider } from './Stories';
 import { Butterfly } from './objects/Butterfly';
 import { Tree } from './objects/Tree';
-import { Owl, Test, TheBatAndTheWorm } from './Stories';
 
 class Init {
   [key: string]: any;
@@ -119,17 +119,17 @@ class Init {
   }
 
   init() {
-    const ship = new Butterfly(innerWidth / 2, innerHeight / 2, this);
-    const tree = new Tree(
-      -this.backgroundSize / 4 + innerWidth / 2,
-      -this.backgroundSize / 2 + innerHeight,
-      this,
-    );
-
-    const storyTest = new Owl(0.25, 0.45, this);
-    const theBatAndTheWorm = new TheBatAndTheWorm(0.78, 0.45, this);
-
-    this.worldObjects = [tree, ship, storyTest, theBatAndTheWorm];
+    this.worldObjects = [
+      new Tree(
+        -this.backgroundSize / 4 + innerWidth / 2,
+        -this.backgroundSize / 2 + innerHeight,
+        this,
+      ),
+      new Butterfly(innerWidth / 2, innerHeight / 2, this),
+      new Owl(0.23, 0.48, this),
+      new TheBatAndTheWorm(0.78, 0.47, this),
+      new TheSnakeAndTheSpider(0.35, 0.14, this),
+    ];
   }
 
   reset() {}

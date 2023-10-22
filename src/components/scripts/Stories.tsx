@@ -24,12 +24,12 @@ export class Owl extends Story {
   }
 }
 
-export class Test extends Story {
+export class TheSnakeAndTheSpider extends Story {
   constructor(xAbsolute: number, yAbsolute: number, init: Init) {
     super(xAbsolute, yAbsolute, init);
-    this.img = document.getElementById('bird-img') as HTMLImageElement;
-    this.id = 'bird';
-    this.text = '<p><b>TITRE</b></br></br>Auteur';
+    this.img = document.getElementById('theSnakeAndTheSpider-img') as HTMLImageElement;
+    this.id = 'theSnakeAndTheSpider';
+    this.text = "<p><b>Le serpent et l'araignée</b></br></br>Nael Varillon";
     this.audio = document.getElementById('testAudio') as HTMLAudioElement;
     this.audioPlayed = false;
   }
