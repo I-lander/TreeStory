@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Butterfly } from './objects/Butterfly';
 import { Tree } from './objects/Tree';
-import { Test, TheBatAndTheWorm } from './Stories';
+import { Owl, Test, TheBatAndTheWorm } from './Stories';
 
 class Init {
   [key: string]: any;
@@ -126,7 +126,7 @@ class Init {
       this,
     );
 
-    const storyTest = new Test(0.25, 0.45, this);
+    const storyTest = new Owl(0.25, 0.45, this);
     const theBatAndTheWorm = new TheBatAndTheWorm(0.78, 0.45, this);
 
     this.worldObjects = [tree, ship, storyTest, theBatAndTheWorm];

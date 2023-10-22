@@ -13,6 +13,17 @@ export class TheBatAndTheWorm extends Story {
   }
 }
 
+export class Owl extends Story {
+  constructor(xAbsolute: number, yAbsolute: number, init: Init) {
+    super(xAbsolute, yAbsolute, init);
+    this.img = document.getElementById('owl-img') as HTMLImageElement;
+    this.id = 'owl';
+    this.text = '<p><b>Lili et Gilbert</b></br></br>Morane Varillon';
+    this.audio = document.getElementById('owl') as HTMLAudioElement;
+    this.audioPlayed = false;
+  }
+}
+
 export class Test extends Story {
   constructor(xAbsolute: number, yAbsolute: number, init: Init) {
     super(xAbsolute, yAbsolute, init);
