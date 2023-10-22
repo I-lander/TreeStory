@@ -4,7 +4,7 @@
 }
 
 :root {
-  --tile-size: calc(100vw / 15);
+  --tile-size: calc(100vh / 16);
 }
 
 * {
@@ -40,7 +40,7 @@ canvas {
 .startButton {
   position: absolute;
   width: calc(var(--tile-size) * 2);
-  height: var(--tile-size);
+  height: calc(var(--tile-size) * 2);
   font-size: calc(var(--tile-size) / 64 * 24);
   color: rgb(230, 237, 240);
   background-color: #eef7ff; 
@@ -51,6 +51,7 @@ canvas {
   cursor: pointer; 
   outline: none;
 }
+
 .triangle-right {
   width: 0;
   height: 0;
@@ -60,7 +61,7 @@ canvas {
   display: block;
   position: absolute;                 
   top: 50%;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%, -50%);
 }
 
