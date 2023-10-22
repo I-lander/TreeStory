@@ -9,6 +9,7 @@ export class Butterfly {
   sprite: HTMLImageElement | null;
   spriteSize: number;
   particles: Particles[];
+  inactiveParticles: Particles[];
   angle: any;
   tag: string;
   init: Init;
@@ -21,6 +22,7 @@ export class Butterfly {
     this.init = init;
     this.spriteSize = this.init.backgroundSize / 20;
     this.particles = [];
+    this.inactiveParticles = [];
     this.angle;
     this.tag = 'ship';
   }
@@ -30,6 +32,7 @@ export class Butterfly {
     if (this.particles.length >= numParticles || !this.init.mouseDown) {
       return;
     }
+
     let dx = this.oldX - this.x;
     let dy = this.oldY - this.y;
 
@@ -37,14 +40,20 @@ export class Butterfly {
     dx /= len;
     dy /= len;
 
-    this.particles.push(
-      new Particles(
+    let particle: Particles;
+    if (this.inactiveParticles.length > 0) {
+      particle = this.inactiveParticles.pop()!;
+      particle.reset(this.x + this.init.camera.x, this.y + this.init.camera.y);
+    } else {
+      particle = new Particles(
         this.x + this.init.camera.x,
         this.y + this.init.camera.y,
         this.init,
-      ),
-    );
+      );
+    }
+    this.particles.push(particle);
   }
+
   draw(ctx: CanvasRenderingContext2D) {
     var relativeMouseX = this.init.mouseX - this.x;
     var relativeMouseY = this.init.mouseY - this.y;
@@ -67,16 +76,10 @@ export class Butterfly {
     ctx.restore();
   }
   update() {
-    // for (var i = 0; i < this.init.worldObjects.length; i++) {
-    //   var obj = this.init.worldObjects[i];
-    //   if (obj.tag && obj.tag === 'sun') {
-    //     this.drawCompass(this.init.ctx, obj);
-    //   }
-    // }
-
     for (let i = 0; i < this.particles.length; i++) {
       const particle = this.particles[i];
       if (particle.radius <= 0) {
+        this.inactiveParticles.push(particle);
         this.particles.splice(i, 1);
         i--;
         continue;
@@ -84,27 +87,6 @@ export class Butterfly {
       particle.update();
     }
     this.draw(this.init.ctx);
-  }
-
-  drawCompass(ctx: CanvasRenderingContext2D, sun: any) {
-    const compassSize = 50;
-    const dx = sun.x - this.init.camera.x - this.x;
-    const dy = sun.y - this.init.camera.y - this.y;
-
-    const compassAngle = Math.atan2(dy, dx);
-    const image = document.getElementById('compass') as HTMLImageElement;
-
-    ctx.save();
-    ctx.translate(this.x, this.y);
-    ctx.rotate(compassAngle + Math.PI / 2);
-    ctx.drawImage(
-      image,
-      -compassSize / 2,
-      -compassSize / 2 - 100,
-      compassSize,
-      compassSize,
-    );
-    ctx.restore();
   }
 }
 
@@ -145,8 +127,17 @@ export class Particles {
     this.draw();
     this.x += this.velocity.x;
     this.y += this.velocity.y;
-    this.radius -= 0.1;
+    this.radius -= 0.08;
     this.hue += 3;
+    this.color = `hsl(${this.hue}, 85%, 75%)`;
+  }
+
+  reset(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+    this.radius = (Math.random() * this.init.backgroundSize) / 500;
+    this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 };
+    this.hue = getRandom(0, 360);
     this.color = `hsl(${this.hue}, 85%, 75%)`;
   }
 }
