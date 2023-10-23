@@ -45,11 +45,11 @@ export class Story {
         this.radius * 2,
       );
     } else {
-      let planetText = document.getElementById(this.id);
+      let planetText = document.getElementById(`${this.id}-txt`);
       const textSize = this.maxDist + 25;
       if (!planetText && this.text) {
         planetText = document.createElement('div');
-        planetText.id = this.id;
+        planetText.id = `${this.id}-txt`;
         planetText.classList.add('storyText');
         if (planetText.innerHTML == '') {
           planetText.innerHTML = this.text;
@@ -127,7 +127,7 @@ export class Story {
     if (distance > this.radius) {
       if (this.text) {
         if (this.radius >= this.initRadius) {
-          const text = document.getElementById(`${this.id}`);
+          const text = document.getElementById(`${this.id}-txt`);
           if (text) {
             text.remove();
           }
